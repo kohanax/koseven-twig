@@ -1,8 +1,6 @@
 koseven-twig
 ============
 
-Version 1.0.7
-
 [![Build Status](https://travis-ci.org/errotan/koseven-twig.svg?branch=master)](https://travis-ci.org/errotan/koseven-twig)
 
 Koseven-twig is a [Koseven][1] module for the popular [Twig][2] template
@@ -12,8 +10,8 @@ framework. This module provides a way to use Twigs exactly as Koseven [Views][3]
 are used, and it uses a custom Twig Loader to locate Twig template files in the
 [Cascading Filesystem][4].
 
-Installation
-------------
+Installation (direct download)
+------------------------------
 
 First, download this module to your modules directory:
 
@@ -26,6 +24,14 @@ Then, add the twig package to your composer.json requirements:
 Then, install it using composer
 
 	php composer.phar update
+
+Installation (composer include)
+-------------------------------
+
+	php composer.phar require errotan/koseven-twig:dev-master
+
+Setup
+-----
 
 Then, enable the module in `APPPATH/bootstrap.php` by adding it to the modules
 initialization:
