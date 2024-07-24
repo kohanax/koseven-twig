@@ -9,11 +9,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: dev-3.0
+
       - name: Download current Docker-Image
         run: docker pull koseven/docker:travis-devel
 
       - name: Mount Directories and run Docker-Machine
-        run: docker run -dtP --name unittest -v /home/runner/work/kohanax/koseven-twig:/tmp/koseven/ koseven/docker:travis-devel
+        run: docker run -dtP --name unittest -v /home/runner/work/koseven-twig/koseven-twig:/tmp/koseven/ koseven/docker:travis-devel
 
       - name: Install composer dependencies
         run: docker exec unittest /bin/sh -c "cd /tmp/koseven; composer install"
