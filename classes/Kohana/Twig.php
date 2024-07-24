@@ -45,8 +45,8 @@ class Kohana_Twig extends View {
 	/**
 	 * Create a Twig view instance
 	 *
-	 * @param   string  $file  Name of Twig template
-	 * @param   array   $data  Data to be passed to template
+	 * @param null $file Name of Twig template
+	 * @param array|null $data Data to be passed to template
 	 * @return  Twig    Twig view instance
 	 */
 	public static function factory($file = NULL, array $data = NULL)
@@ -57,29 +57,29 @@ class Kohana_Twig extends View {
 	/**
 	 * Create a new Twig environment
 	 *
-	 * @return  Twig_Environment  Twig environment
+	 * @return  \Twig\Environment  Twig environment
 	 */
 	protected static function env()
 	{
 		$config = Kohana::$config->load('twig');
 		$loader = new Twig_Loader_CFS($config->get('loader'));
-		$env = new Twig_Environment($loader, $config->get('environment'));
+		$env = new \Twig\Environment($loader, $config->get('environment'));
 
 		foreach ($config->get('functions') as $key => $value)
 		{
-			$function = new Twig_SimpleFunction($key, $value);
+			$function = new \Twig\TwigFunction($key, $value);
 			$env->addFunction($function);
 		}
 
 		foreach ($config->get('filters') as $key => $value)
 		{
-			$filter = new Twig_SimpleFilter($key, $value);
+			$filter = new \Twig\TwigFilter($key, $value);
 			$env->addFilter($filter);
 		}
                 
 		foreach ($config->get('tests') as $key => $value)
 		{
-			$test = new Twig_SimpleTest($key, $value);
+			$test = new \Twig\TwigTest($key, $value);
 			$env->addTest($test);
 		}
 
@@ -89,7 +89,7 @@ class Kohana_Twig extends View {
 	/**
 	 * Get the Twig environment (or create it on first call)
 	 *
-	 * @return  Twig_Environment  Twig environment
+	 * @return  \Twig\Environment|null  Twig environment
 	 */
 	protected static function environment()
 	{
@@ -104,7 +104,7 @@ class Kohana_Twig extends View {
 	 * Set the filename for the Twig view
 	 *
 	 * @param   string  $file  Base name of template
-	 * @return  Twig    This Twig instance
+	 * @return  Kohana_Twig    This Twig instance
 	 */
 	function set_filename($file)
 	{
