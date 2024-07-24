@@ -3,7 +3,7 @@
 /**
  * Twig loader for Kohana's cascading filesystem
  */
-class Twig_Loader_CFS implements Twig_LoaderInterface {
+class Twig_Loader_CFS implements Twig\Loader\LoaderInterface {
 
 	/**
 	 * Loader configuration
@@ -26,11 +26,11 @@ class Twig_Loader_CFS implements Twig_LoaderInterface {
 	 * @param   string  $name  Base name of template file
 	 * @return  string  Path to template file
 	 */
-	public function find_template($name)
+	public function find_template($name): string
 	{
 		if (($path = Kohana::find_file($this->_config['path'], $name, $this->_config['extension'])) === FALSE)
 		{
-			throw new Twig_Error_Loader('The requested twig "'.$name.'" could not be found!');
+			throw new \Twig\Error\LoaderError('The requested twig "'.$name.'" could not be found!');
 		}
 
 		return $path;
@@ -42,7 +42,7 @@ class Twig_Loader_CFS implements Twig_LoaderInterface {
 	 * @param   string  $name  Base name of template
 	 * @return  string  Contents of template
 	 */
-	public function getSource($name)
+	public function getSource($name): string
 	{
 		return file_get_contents($this->find_template($name));
 	}
@@ -53,7 +53,7 @@ class Twig_Loader_CFS implements Twig_LoaderInterface {
 	 * @param   string  $name  Base name of template
 	 * @return  string  Cache key of template
 	 */
-	public function getCacheKey($name)
+	public function getCacheKey($name): string
 	{
 		return $name;
 	}
@@ -65,22 +65,23 @@ class Twig_Loader_CFS implements Twig_LoaderInterface {
 	 * @param   int     $time  Timestamp to compare against
 	 * @return  bool    TRUE if compiled template is older than timestamp
 	 */
-	public function isFresh($name, $time)
+	public function isFresh($name, $time): bool
 	{
         return filemtime($this->find_template($name)) <= $time;
 	}
 
 	/**
 	 * Returns twig source context.
-	 * 
-	 * @param   string  $name  Base name of template
-	 * @return  Twig_Source
+	 *
+	 * @param string $name Base name of template
+	 * @return \Twig\Source
+	 * @throws \Twig\Error\LoaderError
 	 */
-	public function getSourceContext($name)
+	public function getSourceContext($name): \Twig\Source
 	{
 		$path = $this->find_template($name);
 
-		return new Twig_Source(file_get_contents($path), $name, $path); 
+		return new \Twig\Source(file_get_contents($path), $name, $path);
 	}
 
 	/**
@@ -89,7 +90,7 @@ class Twig_Loader_CFS implements Twig_LoaderInterface {
 	 * @param   string  $name  Base name of template
 	 * @return  bool    TRUE if template exists
 	 */
-	public function exists($name)
+	public function exists($name): bool
 	{
 		return ! empty($this->find_template($name));
 	}

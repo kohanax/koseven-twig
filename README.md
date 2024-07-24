@@ -1,7 +1,8 @@
 koseven-twig
 ============
 
-[![Build Status](https://travis-ci.org/errotan/koseven-twig.svg?branch=master)](https://travis-ci.org/errotan/koseven-twig)
+[![koseven-twig](https://github.com/kohanax/koseven-twig/actions/workflows/test.yml/badge.svg)](https://github.com/kohanax/koseven-twig/actions/workflows/test.yml)
+[![channel icon](https://kohanaworld.github.io/telegram-badge/chat.png)](https://t.me/kohanaworld)
 
 Koseven-twig is a [Koseven][1] module for the popular [Twig][2] template
 engine. It was designed to offer the full capabilities of Twig with a strong
@@ -19,16 +20,16 @@ First, download this module to your modules directory:
 
 Then, add the twig package to your composer.json requirements:
 
-	"twig/twig": "^2.0"
+	"twig/twig": "^3.0"
 
 Then, install it using composer
 
-	php composer.phar update
+	composer update
 
 Installation (composer include)
 -------------------------------
 
-	php composer.phar require errotan/koseven-twig:dev-master
+	composer require kohanax/koseven-twig:dev-master
 
 Setup
 -----
@@ -114,6 +115,6 @@ please read them over thoroughly.
 [2]: https://twig.symfony.com/
 [3]: https://docs.koseven.ga/guide/kohana/mvc/views
 [4]: https://docs.koseven.ga/guide/kohana/files
-[5]: https://twig.symfony.com/doc/2.x/templates.html
+[5]: https://twig.symfony.com/doc/3.x/templates.html
 [6]: https://docs.koseven.ga/guide/kohana/conventions
-[7]: https://github.com/errotan/koseven-twig
+[7]: https://github.com/kohanax/koseven-twig

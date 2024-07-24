@@ -1,0 +1,23 @@
+name: koseven-twig
+
+on: [push,pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev-3.0
+
+      - name: Download current Docker-Image
+        run: docker pull kohanaworld/docker:travis-devel
+
+      - name: Mount Directories and run Docker-Machine
+        run: docker run -dtP --name unittest -v /home/runner/work/koseven-twig/koseven-twig:/tmp/koseven/ kohanaworld/docker:travis-devel
+
+      - name: Install composer dependencies
+        run: docker exec unittest /bin/sh -c "cd /tmp/koseven; composer install"
+
+      - name: Run koseven-twig Unittest(s)
+        run: docker exec unittest /bin/sh -c "cd /tmp/koseven; php vendor/bin/phpunit "
