@@ -15,7 +15,7 @@ jobs:
         run: docker run -dtP --name unittest -v /home/runner/work/kohanax/koseven-twig:/tmp/koseven/ koseven/docker:travis-devel
 
       - name: Install composer dependencies
-        run: docker exec unittest /bin/sh -c cd /tmp/koseven; composer install"
+        run: docker exec unittest /bin/sh -c "cd /tmp/koseven; composer install"
 
       - name: Run koseven-twig Unittest(s)
         run: docker exec unittest /bin/sh -c "cd /tmp/koseven; php vendor/bin/phpunit "
