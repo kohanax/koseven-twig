@@ -1,6 +1,9 @@
 koseven-twig
 ============
 
+[![koseven-twig](https://github.com/kohanax/koseven-twig/actions/workflows/test.yml/badge.svg)](https://github.com/kohanax/koseven-twig/actions/workflows/test.yml)
+[![channel icon](https://kohanaworld.github.io/telegram-badge/chat.png)](https://t.me/kohanaworld)
+
 Koseven-twig is a [Koseven][1] module for the popular [Twig][2] template
 engine. It was designed to offer the full capabilities of Twig with a strong
 focus on operating within the guidelines and best practices of the Koseven
